@@ -1,4 +1,4 @@
 # Tomato Timer clone coding
 
- > React Native
+ > React Native . 
  > Redux
