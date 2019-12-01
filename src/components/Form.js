@@ -9,8 +9,6 @@ import {
   Keyboard,
 } from 'react-native';
 
-import {Actions} from 'react-native-router-flux';
-
 export default class Form extends Component {
   constructor(props) {
     super(props);
@@ -34,7 +32,7 @@ export default class Form extends Component {
 
       Keyboard.dismiss();
       alert(
-        'You successfully registered. Email: ' +
+        'You successfully registered. \nEmail: ' +
           email +
           ' password: ' +
           password,
