@@ -1,10 +1,11 @@
 # LoginApp
 
-Tutorial
-with React Native
+> LoginApp Tutorial with React Native
 
+<br />
+<br />
 
-### App.js
+## App.js
 ```
 import React, {Component} from 'react';
 import {StyleSheet, View, StatusBar} from 'react-native';
@@ -72,3 +73,7 @@ const styles = {
   - 'react-native-router-flux' 모듈을 사용하여 App의 flow를 구성했습니다.
   - `<Stack>`를 `<Router/>`로 감싸 구성되었으며 `<Stack>` 안에 `<Scene>`를 통해 스택되어지는 화면을 순서대로 나열합니다.
   - 초기화면 : Login.js
+  
+<br />
+<br />
+<br />
