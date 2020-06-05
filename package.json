@@ -10,8 +10,11 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "@react-native-community/cli-debugger-ui": "^4.9.0",
+    "@react-native-community/push-notification-ios": "^1.2.0",
     "react": "16.11.0",
-    "react-native": "0.62.2"
+    "react-native": "0.62.2",
+    "react-native-push-notification": "^3.5.2"
   },
   "devDependencies": {
     "@babel/core": "^7.6.2",
