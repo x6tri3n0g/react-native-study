@@ -1,114 +1,142 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
-
-import React from 'react';
+import {Agenda, Calendar, CalendarList} from 'react-native-calendars';
+import React, {useEffect, useState} from 'react';
 import {
   SafeAreaView,
-  StyleSheet,
   ScrollView,
-  View,
-  Text,
   StatusBar,
+  StyleSheet,
+  Text,
+  View,
 } from 'react-native';
 
-import {
-  Header,
-  LearnMoreLinks,
-  Colors,
-  DebugInstructions,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+import {LocaleConfig} from 'react-native-calendars';
 
-const App: () => React$Node = () => {
+LocaleConfig.locales['ko'] = {
+  monthNames: [
+    '1월',
+    '2월',
+    '3월',
+    '4월',
+    '5월',
+    '6월',
+    '7월',
+    '8월',
+    '9월',
+    '10월',
+    '11월',
+    '12월',
+  ],
+  monthNamesShort: [
+    '1월',
+    '2월',
+    '3월',
+    '4월',
+    '5월',
+    '6월',
+    '7월',
+    '8월',
+    '9월',
+    '10월',
+    '11월',
+    '12월',
+  ],
+  dayNames: ['일', '월', '화', '수', '목', '금', '토'],
+  dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
+  today: 'Today!',
+};
+LocaleConfig.defaultLocale = 'ko';
+
+const App = () => {
+  const [selectedStart, setSelectedStart] = useState('');
+  const [selectedEnd, setSelectedEnd] = useState('');
+  const [period, setPeriod] = useState(null);
+
+  useEffect(() => {}, []);
+
   return (
-    <>
-      <StatusBar barStyle="dark-content" />
-      <SafeAreaView>
-        <ScrollView
-          contentInsetAdjustmentBehavior="automatic"
-          style={styles.scrollView}>
-          <Header />
-          {global.HermesInternal == null ? null : (
-            <View style={styles.engine}>
-              <Text style={styles.footer}>Engine: Hermes</Text>
-            </View>
-          )}
-          <View style={styles.body}>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Step One</Text>
-              <Text style={styles.sectionDescription}>
-                Edit <Text style={styles.highlight}>App.js</Text> to change this
-                screen and then come back to see your edits.
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>See Your Changes</Text>
-              <Text style={styles.sectionDescription}>
-                <ReloadInstructions />
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Debug</Text>
-              <Text style={styles.sectionDescription}>
-                <DebugInstructions />
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Learn More</Text>
-              <Text style={styles.sectionDescription}>
-                Read the docs to discover what to do next:
-              </Text>
-            </View>
-            <LearnMoreLinks />
-          </View>
-        </ScrollView>
-      </SafeAreaView>
-    </>
+    <SafeAreaView style={{flex: 1, justifyContent: 'center'}}>
+      <View
+        style={{
+          height: 50,
+          width: '100%',
+          backgroundColor: '#888888',
+          justifyContent: 'center',
+          marginTop: 40,
+        }}>
+        <Text
+          style={{
+            color: 'white',
+            fontSize: 16,
+            fontWeight: 'bold',
+            paddingLeft: 20,
+          }}>
+          {selectedStart}
+        </Text>
+      </View>
+      <CalendarList
+        current={Date()}
+        onDayPress={(day) => {
+          console.log('selected day', day);
+          setSelectedStart(day.dateString);
+        }}
+        // Callback which gets executed when visible months change in scroll view. Default = undefined
+        onVisibleMonthsChange={(months) => {
+          console.log('now these months are visible', months);
+        }}
+        // Max amount of months allowed to scroll to the past. Default = 50
+        pastScrollRange={50}
+        // Max amount of months allowed to scroll to the future. Default = 50
+        futureScrollRange={50}
+        // Enable or disable scrolling of calendar list
+        scrollEnabled={true}
+        // Enable or disable vertical scroll indicator. Default = false
+        showScrollIndicator={true}
+        // ...calendarParams
+        markedDates={{
+          '2020-08-14': {
+            startingDay: true,
+            color: '#5F00FF',
+            textColor: 'white',
+          },
+          '2020-08-15': {
+            selected: true,
+            color: '#5F00FF',
+            textColor: 'white',
+          },
+          '2020-08-16': {
+            selected: true,
+            color: '#5F00FF',
+            textColor: 'white',
+          },
+          '2020-08-17': {
+            selected: true,
+            color: '#5F00FF',
+            textColor: 'white',
+          },
+          '2020-08-18': {
+            selected: true,
+            color: '#5F00FF',
+            textColor: 'white',
+          },
+          '2020-08-19': {
+            selected: true,
+            color: '#5F00FF',
+            textColor: 'white',
+          },
+          '2020-08-20': {
+            selected: true,
+            endingDay: true,
+            color: '#5F00FF',
+            textColor: 'white',
+          },
+        }}
+        // Date marking style [simple/period/multi-dot/custom]. Default = 'simple'
+        markingType={'period'}
+      />
+    </SafeAreaView>
   );
 };
 
-const styles = StyleSheet.create({
-  scrollView: {
-    backgroundColor: Colors.lighter,
-  },
-  engine: {
-    position: 'absolute',
-    right: 0,
-  },
-  body: {
-    backgroundColor: Colors.white,
-  },
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-    color: Colors.black,
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-    color: Colors.dark,
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-  footer: {
-    color: Colors.dark,
-    fontSize: 12,
-    fontWeight: '600',
-    padding: 4,
-    paddingRight: 12,
-    textAlign: 'right',
-  },
-});
+const styles = StyleSheet.create({});
 
 export default App;
