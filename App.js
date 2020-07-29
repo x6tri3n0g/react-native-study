@@ -32,7 +32,7 @@ const App = () => {
           borderTopColor: '#BDBDBD',
           borderTopWidth: 1,
         }}>
-        {/* <TouchableOpacity
+        <TouchableOpacity
           onPress={() => alert('구매하시겠습니까?')}
           style={{
             width: '80%',
@@ -46,7 +46,7 @@ const App = () => {
           <Text style={{color: 'white', fontWeight: 'bold', fontSize: 16}}>
             Add to Cart
           </Text>
-        </TouchableOpacity> */}
+        </TouchableOpacity>
       </View>
     </View>
   );
