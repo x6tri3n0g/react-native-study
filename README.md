@@ -2,8 +2,7 @@
 
 <br />
 
-> react-native-webview
->
+> Using `react-native-webview`
 > > so simple!
 
 <br />
