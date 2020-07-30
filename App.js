@@ -70,7 +70,7 @@ const App = () => {
       selectedPeriod[key] = valueArr[i];
     }
 
-    console.log(selectedPeriod);
+    // console.log(selectedPeriod);
     setPeriod(selectedPeriod);
   }, [selectedStart, selectedEnd]);
 
@@ -102,12 +102,12 @@ const App = () => {
         // current={Date()}
         monthFormat={'yyyy MM'}
         onDayPress={(day) => {
-          console.log('selected day', day);
+          // console.log('selected day', day);
           selectDay(day.dateString);
         }}
-        onVisibleMonthsChange={(months) => {
-          console.log('now these months are visible', months);
-        }}
+        // onVisibleMonthsChange={(months) => {
+        //   console.log('now these months are visible', months);
+        // }}
         pastScrollRange={50}
         futureScrollRange={50}
         scrollEnabled={true}
