@@ -1,14 +1,6 @@
-import {Agenda, Calendar, CalendarList} from 'react-native-calendars';
 import React, {useEffect, useState} from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native';
 
+import {CalendarList} from 'react-native-calendars';
 import {LocaleConfig} from 'react-native-calendars';
 import styled from 'styled-components';
 
@@ -95,7 +87,7 @@ const App = () => {
   };
 
   return (
-    <SafeAreaView style={{flex: 1, justifyContent: 'center'}}>
+    <CalendarScreenWrapper>
       <CalendarHeaderWrapper>
         <DayWrapper>
           <DayKeyText>입국 날짜</DayKeyText>
@@ -113,66 +105,24 @@ const App = () => {
           console.log('selected day', day);
           selectDay(day.dateString);
         }}
-        // Callback which gets executed when visible months change in scroll view. Default = undefined
         onVisibleMonthsChange={(months) => {
           console.log('now these months are visible', months);
         }}
-        // Max amount of months allowed to scroll to the past. Default = 50
         pastScrollRange={50}
-        // Max amount of months allowed to scroll to the future. Default = 50
         futureScrollRange={50}
-        // Enable or disable scrolling of calendar list
         scrollEnabled={true}
-        // Enable or disable vertical scroll indicator. Default = false
         showScrollIndicator={true}
-        // ...calendarParams
-        markedDates={
-          //   {
-          //   '2020-07-30': {
-          //     startingDay: true,
-          //     color: '#5F00FF',
-          //     textColor: 'white',
-          //   },
-          //   '2020-07-31': {
-          //     selected: true,
-          //     color: '#5F00FF',
-          //     textColor: 'white',
-          //   },
-          //   '2020-08-16': {
-          //     selected: true,
-          //     color: '#5F00FF',
-          //     textColor: 'white',
-          //   },
-          //   '2020-08-17': {
-          //     selected: true,
-          //     color: '#5F00FF',
-          //     textColor: 'white',
-          //   },
-          //   '2020-08-18': {
-          //     selected: true,
-          //     color: '#5F00FF',
-          //     textColor: 'white',
-          //   },
-          //   '2020-08-19': {
-          //     selected: true,
-          //     color: '#5F00FF',
-          //     textColor: 'white',
-          //   },
-          //   '2020-08-20': {
-          //     selected: true,
-          //     endingDay: true,
-          //     color: '#5F00FF',
-          //     textColor: 'white',
-          //   },
-          // }
-          period
-        }
-        // Date marking style [simple/period/multi-dot/custom]. Default = 'simple'
+        markedDates={period}
         markingType={'period'}
       />
-    </SafeAreaView>
+    </CalendarScreenWrapper>
   );
 };
+
+const CalendarScreenWrapper = styled.SafeAreaView`
+  flex: 1;
+  justify-content: center;
+`;
 
 const CalendarHeaderWrapper = styled.View`
   width: 100%;
