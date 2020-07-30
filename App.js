@@ -10,74 +10,108 @@ import {
 } from 'react-native';
 
 import {LocaleConfig} from 'react-native-calendars';
+import styled from 'styled-components';
 
-LocaleConfig.locales['ko'] = {
+LocaleConfig.locales['en'] = {
+  formatAccessibilityLabel: "dddd d 'of' MMMM 'of' yyyy",
   monthNames: [
-    '1월',
-    '2월',
-    '3월',
-    '4월',
-    '5월',
-    '6월',
-    '7월',
-    '8월',
-    '9월',
-    '10월',
-    '11월',
-    '12월',
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
   ],
   monthNamesShort: [
-    '1월',
-    '2월',
-    '3월',
-    '4월',
-    '5월',
-    '6월',
-    '7월',
-    '8월',
-    '9월',
-    '10월',
-    '11월',
-    '12월',
+    'jan',
+    'feb',
+    'mar',
+    'apr',
+    'may',
+    'jun',
+    'jul',
+    'aug',
+    'sep',
+    'oct',
+    'nov',
+    'dec',
   ],
-  dayNames: ['일', '월', '화', '수', '목', '금', '토'],
-  dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
-  today: 'Today!',
+  dayNames: [
+    'Sunday',
+    'Monday',
+    'Tuesday',
+    'Wednesday',
+    'Thursday',
+    'Friday',
+    'Saturday',
+  ],
+  dayNamesShort: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Frid', 'Sat'],
 };
-LocaleConfig.defaultLocale = 'ko';
+
+LocaleConfig.defaultLocale = 'en';
 
 const App = () => {
-  const [selectedStart, setSelectedStart] = useState('');
-  const [selectedEnd, setSelectedEnd] = useState('');
+  const [selectedStart, setSelectedStart] = useState('-');
+  const [selectedEnd, setSelectedEnd] = useState('-');
   const [period, setPeriod] = useState(null);
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    const selectedPeriod = {};
+
+    const startDay = selectedStart;
+    const endDay = selectedEnd;
+
+    const keyArr = [startDay, endDay];
+    const valueArr = [
+      {startingDay: true, color: '#5F00FF', textColor: 'white'},
+      {endingDay: true, color: '#5F00FF', textColor: 'white'},
+    ];
+
+    for (let i = 0; i < keyArr.length; i++) {
+      const key = keyArr[i];
+      selectedPeriod[key] = valueArr[i];
+    }
+
+    console.log(selectedPeriod);
+    setPeriod(selectedPeriod);
+  }, [selectedStart, selectedEnd]);
+
+  const selectDay = (day) => {
+    if (selectedStart === '-') {
+      setSelectedStart(day);
+    } else if (selectedEnd === '-') {
+      setSelectedEnd(day);
+    } else {
+      // reset
+      setSelectedStart('-');
+      setSelectedEnd('-');
+    }
+  };
 
   return (
     <SafeAreaView style={{flex: 1, justifyContent: 'center'}}>
-      <View
-        style={{
-          height: 50,
-          width: '100%',
-          backgroundColor: '#888888',
-          justifyContent: 'center',
-          marginTop: 40,
-        }}>
-        <Text
-          style={{
-            color: 'white',
-            fontSize: 16,
-            fontWeight: 'bold',
-            paddingLeft: 20,
-          }}>
-          {selectedStart}
-        </Text>
-      </View>
+      <CalendarHeaderWrapper>
+        <DayWrapper>
+          <DayKeyText>입국 날짜</DayKeyText>
+          <DayText>{selectedStart}</DayText>
+        </DayWrapper>
+        <DayWrapper>
+          <DayKeyText>출국 날짜</DayKeyText>
+          <DayText>{selectedEnd}</DayText>
+        </DayWrapper>
+      </CalendarHeaderWrapper>
       <CalendarList
-        current={Date()}
+        // current={Date()}
+        monthFormat={'yyyy MM'}
         onDayPress={(day) => {
           console.log('selected day', day);
-          setSelectedStart(day.dateString);
+          selectDay(day.dateString);
         }}
         // Callback which gets executed when visible months change in scroll view. Default = undefined
         onVisibleMonthsChange={(months) => {
@@ -92,44 +126,47 @@ const App = () => {
         // Enable or disable vertical scroll indicator. Default = false
         showScrollIndicator={true}
         // ...calendarParams
-        markedDates={{
-          '2020-08-14': {
-            startingDay: true,
-            color: '#5F00FF',
-            textColor: 'white',
-          },
-          '2020-08-15': {
-            selected: true,
-            color: '#5F00FF',
-            textColor: 'white',
-          },
-          '2020-08-16': {
-            selected: true,
-            color: '#5F00FF',
-            textColor: 'white',
-          },
-          '2020-08-17': {
-            selected: true,
-            color: '#5F00FF',
-            textColor: 'white',
-          },
-          '2020-08-18': {
-            selected: true,
-            color: '#5F00FF',
-            textColor: 'white',
-          },
-          '2020-08-19': {
-            selected: true,
-            color: '#5F00FF',
-            textColor: 'white',
-          },
-          '2020-08-20': {
-            selected: true,
-            endingDay: true,
-            color: '#5F00FF',
-            textColor: 'white',
-          },
-        }}
+        markedDates={
+          //   {
+          //   '2020-07-30': {
+          //     startingDay: true,
+          //     color: '#5F00FF',
+          //     textColor: 'white',
+          //   },
+          //   '2020-07-31': {
+          //     selected: true,
+          //     color: '#5F00FF',
+          //     textColor: 'white',
+          //   },
+          //   '2020-08-16': {
+          //     selected: true,
+          //     color: '#5F00FF',
+          //     textColor: 'white',
+          //   },
+          //   '2020-08-17': {
+          //     selected: true,
+          //     color: '#5F00FF',
+          //     textColor: 'white',
+          //   },
+          //   '2020-08-18': {
+          //     selected: true,
+          //     color: '#5F00FF',
+          //     textColor: 'white',
+          //   },
+          //   '2020-08-19': {
+          //     selected: true,
+          //     color: '#5F00FF',
+          //     textColor: 'white',
+          //   },
+          //   '2020-08-20': {
+          //     selected: true,
+          //     endingDay: true,
+          //     color: '#5F00FF',
+          //     textColor: 'white',
+          //   },
+          // }
+          period
+        }
         // Date marking style [simple/period/multi-dot/custom]. Default = 'simple'
         markingType={'period'}
       />
@@ -137,6 +174,29 @@ const App = () => {
   );
 };
 
-const styles = StyleSheet.create({});
+const CalendarHeaderWrapper = styled.View`
+  width: 100%;
+  height: 50px;
+  background-color: #f2f2f2;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 40px;
+`;
+
+const DayWrapper = styled.View`
+  width: 74px;
+  margin-left: 30px;
+  margin-right: 30px;
+`;
+
+const DayText = styled.Text`
+  font-size: 12px;
+`;
+
+const DayKeyText = styled(DayText)`
+  color: #5c5c5c;
+  margin-bottom: 4px;
+`;
 
 export default App;
