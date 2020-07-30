@@ -1,10 +1,8 @@
-# WebView TEST
+# React Native WebView
 
 <br />
 
-> react-native-webview
->
-> > so simple!
+> Using [`react-native-webview`](https://github.com/react-native-community/react-native-webview)
 
 <br />
 <br />
