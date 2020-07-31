@@ -1,12 +1,21 @@
-import React, {useEffect, useRef, useState} from 'react';
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {
+  FooterButton,
+  FooterButtonText,
+  FooterButtonWrapper,
+  HeaderButton,
+  HeaderButtonWrapper,
+  ScreenWrapper,
+} from './src/components/Atoms';
+import React, {useRef, useState} from 'react';
 
 import Loading from './src/Loading';
+import {Text} from 'react-native';
 import {WebView} from 'react-native-webview';
 
 const App = () => {
   const webviewRef = useRef(WebView);
   const [url, setUrl] = useState('');
+
   const runFirst = `
       window.isNativeApp = true;
       true; // note: this is required, or you'll sometimes get silent failures
@@ -23,90 +32,40 @@ const App = () => {
     }
   };
 
+  // 웹 페이지의 이전 페이지로 돌아가기
   const onPressBackBtn = () => {
     webviewRef.current.goBack();
   };
 
   return (
-    <View style={{flex: 1}}>
-      <View
-        style={{
-          position: 'absolute',
-          top: 0,
-          width: '100%',
-          height: 80, // 80
-          backgroundColor: 'white',
-          zIndex: 10,
-          flexDirection: 'row',
-          justifyContent: 'space-between',
-          alignItems: 'flex-end',
-        }}>
-        <TouchableOpacity
-          onPress={onPressBackBtn}
-          style={{
-            marginTop: 40,
-            marginRight: 30,
-            marginLeft: 30,
-            height: 30,
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}>
+    <ScreenWrapper>
+      <HeaderButtonWrapper>
+        <HeaderButton onPress={onPressBackBtn}>
           <Text>Back</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={{
-            marginTop: 40,
-            marginRight: 30,
-            height: 30,
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}>
+        </HeaderButton>
+        <HeaderButton onPress={() => alert('검색창으로 이동')}>
           <Text>Search</Text>
-        </TouchableOpacity>
-      </View>
+        </HeaderButton>
+      </HeaderButtonWrapper>
       <WebView
         ref={webviewRef}
         source={{
-          uri: 'http://global.gmarket.co.kr/Home/Main',
+          uri: 'https://github.com/',
         }}
         renderLoading={() => <Loading />}
         originWhitelist={['*']}
         allowsBackForwardNavigationGestures={true}
-        style={{marginTop: 20}}
+        style={{marginTop: 80}}
         injectedJavaScriptBeforeContentLoaded={runFirst}
         onNavigationStateChange={onNavigationStateChange}
       />
-      <View
-        style={{
-          position: 'absolute',
-          bottom: 0,
-          alignItems: 'center',
-          width: '100%',
-          height: 90,
-          backgroundColor: 'white',
-          borderTopColor: '#BDBDBD',
-          borderTopWidth: 1,
-        }}>
-        <TouchableOpacity
-          onPress={() => alert('구매하시겠습니까?')}
-          style={{
-            width: '80%',
-            height: 38,
-            backgroundColor: '#5F00FF',
-            margin: 10,
-            justifyContent: 'center',
-            alignItems: 'center',
-            borderRadius: 8,
-          }}>
-          <Text style={{color: 'white', fontWeight: 'bold', fontSize: 16}}>
-            Add to Cart
-          </Text>
-        </TouchableOpacity>
-      </View>
-    </View>
+      <FooterButtonWrapper>
+        <FooterButton onPress={() => alert('장바구니에 담습니다!')}>
+          <FooterButtonText>Add to Cart</FooterButtonText>
+        </FooterButton>
+      </FooterButtonWrapper>
+    </ScreenWrapper>
   );
 };
-
-const styles = StyleSheet.create({});
 
 export default App;
