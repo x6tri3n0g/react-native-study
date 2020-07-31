@@ -1,3 +1,3 @@
-# React Native App Flow Structuring using 🤘🏻 react-navigation
+# ✈️ React Native App Flow Structuring using react-navigation
 
-> Using `react-navigation` v5
+> Using `react-navigation(v5)`
