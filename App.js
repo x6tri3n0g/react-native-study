@@ -50,12 +50,12 @@ const App = () => {
       <WebView
         ref={webviewRef}
         source={{
-          uri: 'https://github.com/',
+          // uri: 'https://github.com/',
+          uri: 'http://global.gmarket.co.kr/item?goodsCode=1581957693',
         }}
         renderLoading={() => <Loading />}
         originWhitelist={['*']}
         allowsBackForwardNavigationGestures={true}
-        style={{marginTop: 80}}
         injectedJavaScriptBeforeContentLoaded={runFirst}
         onNavigationStateChange={onNavigationStateChange}
       />

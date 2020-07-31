@@ -1,17 +1,14 @@
 import styled from 'styled-components';
 
-const ScreenWrapper = styled.View`
+const ScreenWrapper = styled.SafeAreaView`
   flex: 1;
 `;
 
 const HeaderButtonWrapper = styled.View`
-  position: absolute;
-  top: 0;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  height: 80px;
   background-color: white;
   z-index: 10;
 `;
@@ -22,7 +19,7 @@ const HeaderButton = styled.TouchableOpacity.attrs({
   height: 30px;
   justify-content: center;
   align-items: center;
-  margin: 40px 30px 0px 30px;
+  margin: 0px 30px 0px 30px;
   background-color: #f1f2f3;
   padding: 0 12px;
   border-radius: 4px;
@@ -30,12 +27,12 @@ const HeaderButton = styled.TouchableOpacity.attrs({
 
 const FooterButtonWrapper = styled.View`
   position: absolute;
-  bottom: 0;
-  align-items: center;
+  bottom: 36px;
   width: 100%;
-  height: 90px;
+  height: 54px;
   background-color: white;
-  border: 1px solid #bdbdbd;
+  justify-content: center;
+  align-items: center;
 `;
 
 const FooterButton = styled.TouchableOpacity.attrs({
