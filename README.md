@@ -40,4 +40,5 @@ Android - react-native-webview version >=6.X.X: Please make sure AndroidX is ena
 <br />
 
 > android.useAndroidX=true
+
 > android.enableJetifier=true
