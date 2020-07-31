@@ -1,10 +1,11 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 
 import Loading from './src/Loading';
 import {WebView} from 'react-native-webview';
 
 const App = () => {
+  const webviewRef = useRef(WebView);
   const [url, setUrl] = useState('');
   const runFirst = `
       window.isNativeApp = true;
@@ -13,13 +14,17 @@ const App = () => {
 
   const onNavigationStateChange = (navState) => {
     if (url !== navState.url) {
-      let url = navState.url;
+      let curUrl = navState.url;
 
       // 현재 페이지 url 가져오기
-      console.log(url);
+      console.log(curUrl);
 
-      setUrl(url);
+      setUrl(curUrl);
     }
+  };
+
+  const onPressBackBtn = () => {
+    webviewRef.current.goBack();
   };
 
   return (
@@ -37,7 +42,7 @@ const App = () => {
           alignItems: 'flex-end',
         }}>
         <TouchableOpacity
-          onPress={() => alert('뒤로가기')}
+          onPress={onPressBackBtn}
           style={{
             marginTop: 40,
             marginRight: 30,
@@ -60,6 +65,7 @@ const App = () => {
         </TouchableOpacity>
       </View>
       <WebView
+        ref={webviewRef}
         source={{
           uri: 'http://global.gmarket.co.kr/Home/Main',
         }}
