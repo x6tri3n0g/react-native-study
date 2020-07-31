@@ -36,7 +36,8 @@ $ pod install
 
 Android - react-native-webview version <6: This module does not require any extra step after running the link command 🎉
 <br />
-Android - react-native-webview version >=6.X.X: Please make sure AndroidX is enabled in your project by editting android/gradle.properties and adding 2 lines:
+Android - react-native-webview version >=6.X.X: Please make sure AndroidX is enabled in your project by editting `android/gradle.properties` and adding 2 lines:
 <br />
-android.useAndroidX=true
-android.enableJetifier=true
+
+> android.useAndroidX=true
+> android.enableJetifier=true
