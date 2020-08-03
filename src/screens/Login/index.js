@@ -3,7 +3,7 @@ import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
 
 const Login = ({navigation}) => {
-  const completeLogin = () => {
+  const onPressLogin = () => {
     navigation.reset({
       index: 0,
       routes: [{name: 'Home'}],
@@ -13,7 +13,7 @@ const Login = ({navigation}) => {
   return (
     <View style={styles.screenWrapper}>
       <Text style={styles.loginTitle}>Login Screen</Text>
-      <TouchableOpacity style={styles.loginBtn} onPress={completeLogin}>
+      <TouchableOpacity style={styles.loginBtn} onPress={onPressLogin}>
         <Text style={styles.loginBtnText}>Login</Text>
       </TouchableOpacity>
     </View>

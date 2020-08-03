@@ -4,7 +4,10 @@ import {StyleSheet, Text, View} from 'react-native';
 const Intro = ({navigation}) => {
   useEffect(() => {
     setTimeout(() => {
-      navigation.navigate('Login');
+      navigation.reset({
+        index: 0,
+        routes: [{name: 'Login'}],
+      });
     }, 2000);
   }, []);
 
