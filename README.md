@@ -8,7 +8,7 @@ test("테스트 설명", () => {
 })
 ```
 
-toXxx 부분에서 사용되는 함수를 흔히 Test Matchcher라고 하며 예를 들어 toBe() 함수는 숫자나 문자와 같은 객체가 아닌 기본형(primitive)값을 비교할 때 사용합니다.
+toXxx() 부분에서 사용되는 함수를 흔히 Test Matchcher라고 하며 예를 들어 toBe() 함수는 숫자나 문자와 같은 객체가 아닌 기본형(primitive)값을 비교할 때 사용합니다.
 
 그리고 `npm test` 또는 `yarn test`를 실행시키면 테스트를 시작합니다.
 
